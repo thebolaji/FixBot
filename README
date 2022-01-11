@@ -13,12 +13,13 @@
 
 ## Routes
 
-| Routes                                                | Description                              | 
-| ------------------------------------------------------|----------------------------------------- |
-| [POST]   /create                                      | Create a new Telemetric Data             |   
-| [POST]   /update                                      | Update Telemetric Data                   |
-| [GET]    /all                                         | Get all Telemetric Data                  |                                     
-| [DELETE] /delete                                      | Delete all Telemetric Data               |
+| Routes                                                   | Description                              | 
+| ---------------------------------------------------------|----------------------------------------- |
+| [POST]   /create/:id                                     | Create a new Telemetric Data             |   
+| [POST]   /update/:id                                     | Update Telemetric Data                   |
+| [GET]    /car/all                                        | Get all Telemetric Data                  |                                     
+| [GET]    /car/:id                                        | Get one car Telemetric Data              |                                     
+| [DELETE] /delete:id                                      | Delete all Telemetric Data               |
 
 
 documentation: https://documenter.getpostman.com/view/10414216/UVXgLcow

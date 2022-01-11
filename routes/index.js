@@ -1,10 +1,11 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 const Car = require('../models/Car.model');
+const cache = require('../utils/cache');
 
 /* GET home page. */
 router.get('/', (req, res) => {
-  res.send('Hello World!');
+  res.status(200).json({ message: "Hello world 🇵🇹" });
 });
 
 // CREATE a new car
@@ -70,9 +71,10 @@ router.delete('/delete/:id', async (req, res) => {
 });
 
 // GET all cars
-router.get('/all', async (req, res) => {
+router.get('/car/all', cache(10), async (req, res) => {
   try {
     // Find all cars
+    const {id} = req.query
     const cars = await Car.find();
     res.json(cars);
   } catch (err) {
@@ -80,5 +82,20 @@ router.get('/all', async (req, res) => {
     res.status(500).send(err.message);
   }
 });
+
+// Get one car
+router.get('/car/:id', cache(10), async (req, res) => {
+  try {
+    const {id} = req.params;
+    // Find the car with the given ID
+    const car = await Car.findById(req.params.id);
+    // Send the car to the client
+    return res.status(200).json(car);
+} catch (err) {
+    // If an error occurs, send it back to the client
+    res.status(500).send(err.message);
+  }
+});
+
 
 module.exports = router;
