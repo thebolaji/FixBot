@@ -19,3 +19,6 @@
 | [POST]   /update                                      | Update Telemetric Data                   |
 | [GET]    /all                                         | Get all Telemetric Data                  |                                     
 | [DELETE] /delete                                      | Delete all Telemetric Data               |
+
+
+documentation: https://documenter.getpostman.com/view/10414216/UVXgLcow
