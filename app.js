@@ -8,6 +8,7 @@ const logger = require('morgan');
 
 const indexRouter = require('./routes/index');
 const MongoConfig = require('./utils/mongo.config');
+const { hostname } = require('os');
 
 const app = express();
 
@@ -17,7 +18,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
-
+ 
 app.use('/', indexRouter);
 
 // catch 404 and forward to error handler
@@ -38,7 +39,8 @@ app.use((err, req, res, next) => {
 
 app.listen(3000, async () => {
   await MongoConfig();
-  console.log('Server running at http://localhost:3000/');
+  console.log(`Server running at ${hostname}:3000`);
 });
+
 
 module.exports = app;

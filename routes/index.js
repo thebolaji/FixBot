@@ -97,5 +97,32 @@ router.get('/car/:id', cache(10), async (req, res) => {
   }
 });
 
+// Get all cars within a radius
+router.get('/car/radius/:latitude/:longitude/:radius', cache(10), async (req, res) => {
+  try {
+    const {latitude, longitude, radius} = req.params;
+    // Find all cars within the given radius
+    const cars = await Car.find({
+      car_location: {
+        $geoWithin: {
+          $centerSphere: [
+            [latitude, longitude],
+            radius / 6378.1
+          ]
+        }
+      }
+    });
+    // Send the cars to the client
+    return res.status(200).json(cars);
+  } catch (err) {
+    // If an error occurs, send it back to the client
+    res.status(500).send(err.message);
+  }
+});
+
+
+
+
+
 
 module.exports = router;
