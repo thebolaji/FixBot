@@ -3,7 +3,7 @@ version: 0.2
 phases:
   install:
     commands:
-      - sudo apt-get install jq
+      - sudo yum install jq
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
