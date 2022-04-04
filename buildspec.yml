@@ -7,7 +7,7 @@ phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-      - aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin $REPOSITORY_URI
+      - aws ecr get-login-password --region eu-west-2 | docker login --username AWS --password-stdin $REPOSITORY_URI
       - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - docker pull $REPOSITORY_URI:latest || exit 0
   build:
